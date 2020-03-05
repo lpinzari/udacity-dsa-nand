@@ -1,0 +1,1299 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{heap\_introduction}
+    
+    
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Priority Queues - Intuition}\label{priority-queues---intuition}
+
+Consider the following scenario -
+
+A doctor is working in an emergency wing at a hospital. When patients
+come in, a nurse checks their symptoms and based on the severity of the
+illness, sends them to the doctor. For e.g. a guy who has had an
+accident is sent before someone who has come with a runny nose. But
+there is a slight problem. There is only one nurse and only one doctor.
+In the amount of time nurse takes to check the symptoms, the doctor has
+to work alone with the patients, hurting their overall productivity.
+
+You are a ninja programmer. The doctor comes to you for help. Your job
+is to write a small software in which patients will enter their symptoms
+and will receive a priority number based on their illness. The doctor
+has given you a list of common ailments, and the priority in which he
+would prefer seeing them. How would you solve the priority problem?
+
+    \subsection{Priority Queues}\label{priority-queues}
+
+Like the name suggests, a \textbf{priority queue} is similar to a
+regular queue, except that each element in the queue has a priority
+associated with it. A regular queue is a FIFO data structure, meaning
+that the first element to be added to the queue is also the first to be
+removed.
+
+With a priority queue, this order of removal is instead based on the
+priority. Depending on how we choose to set up the priority queue, we
+either remove the element with the most priority, or an element of the
+least priority.
+
+For the sake of discussion, let's focus on removing the element of least
+priority for now.
+
+    \subsection{Functionality}\label{functionality}
+
+If we were to create a \texttt{PriorityQueue} class, what methods would
+it need to have?
+
+Here are the two key methods: * \texttt{insert} - insert an element *
+\texttt{remove} - remove an element
+
+And we can also add the same utility methods that we had in our regular
+\texttt{Queue} class: * \texttt{front} - returns the element at the
+front of the queue * \texttt{size} - returns the number of elements
+present in the queue * \texttt{is\_empty} - returns \texttt{True} if
+there are no elements in the queue, and \texttt{False} otherwise
+
+As part of this functionality, we will need a way of assigning
+priorities to the items.
+
+A very common way to solve the patient-doctor problem mentioned above
+would be to assign each ailment a priority. For e.g.
+
+\begin{verbatim}
+* A running nose may be assigned priority 1
+* Fever may be assigned 2
+* Accident may get a priority 10
+\end{verbatim}
+
+You will find this theme recurring in all of programming. We use numbers
+to effectively represent data.
+
+For the sake of simplicity, let's only consider integers here. Let us
+assume a scenario where we get integers as input and we assign a
+priority on how large / small they are. Let us say the smaller the
+number, the smaller its priority. So, in our simplified version of the
+problem statement the value of the integer serves as a priority.
+
+Our goal is to create a queue where the element with the lowest priority
+is removed first. Therefore, the \texttt{remove} method will remove the
+smallest number from the priority queue. Thus, the largest number will
+be the last to be removed from the priority queue and the smallest
+number will be the first to be removed.
+
+\subsection{How should we implement
+it?}\label{how-should-we-implement-it}
+
+What we've described above is just the abstract characteristics that we
+expect from this data structure. As with stacks and queues (and other
+abstract data types), there is more than one way that we could implement
+our priority queue such that it would exhibit the above behaviors.
+
+However, not all implementations are ideal. When we implemented a
+regular queue earlier, you may remember the \texttt{enqueue} and
+\texttt{dequeue} methods had a time complexity of \(O(1)\). Similarly,
+we would like the \texttt{insert} and \texttt{remove} methods on our
+priority queue to be fast.
+
+So, what underlying structure should we use to implement the priority
+queue such that it will be as efficient as possible? Let's look at some
+different structures and consider the pros and cons.
+
+    \subsubsection{Arrays}\label{arrays}
+
+Earlier, we saw that one way to implement a queue was by using an array.
+We could do a similar thing for priority queues. We could use the array
+to store our data.
+
+Insertion in an array is very fast. Unless the array is full, we can do
+it in \texttt{O(1)} time.
+
+\emph{Note: When the array is full, we will simply create a new array
+and copy all the elements from our old array to new array. It's exactly
+similar to what we do for our queue's implementation using arrays.}
+
+What about removal? We always want to remove the smallest or highest
+priority data from the array, depending on if this is a max-heap or
+min-heap. In the worst case, we will have to search the entire array,
+which will take \texttt{O(n)} time. Thus, to remove the element, the
+time complexity would be \texttt{O(n)}.
+
+This also creates an additional problem for us. The index from which we
+removed the element is now empty. We cannot leave empty indices in our
+array. Over the course of operations, we will be wasting a lot of space
+if we did that.
+
+Therefore, insertion no longer happens in \texttt{O(1)} time. Rather,
+every time we insert, we will have to look for these empty indices and
+put our new element in the first empty index we find. In the worst case,
+this also takes \texttt{O(n)} time. Therefore, our time complexity with
+arrays (for both insertion and removal) would be \texttt{O(n)}.
+
+    \subsubsection{LinkedList}\label{linkedlist}
+
+Insertion is very easy in a linked list. If we maintain a variable to
+keep track of the \texttt{tail} of the linked list, then we can simply
+add a new node at this location. Thus, insertion takes \texttt{O(1)}
+time.
+
+For removal, we will have to traverse the entire list and find the
+smallest element, which will require \texttt{O(n)} time.
+
+Note that with linked lists, unlike arrays, we do not have to worry
+about empty indices.
+
+A linked linked certainly seems to be a better option than an array.
+Although they have the same time complexity for removal, the time
+complexity for insertion is better.
+
+    \subsubsection{HashMap}\label{hashmap}
+
+The same problem lies in HashMap as well. We can insert in \texttt{O(1)}
+time. Although, we can remove an element from a HashMap in \texttt{O(1)}
+time but we have to first search for the smallest element in the map.
+This will again take \texttt{O(n)} time. Therefore, the time complexity
+of \texttt{remove} is \texttt{O(n)} for hashmaps.
+
+    \subsubsection{Binary Search Trees}\label{binary-search-trees}
+
+Binary Search Trees are laid out according to the value of the node that
+we want to insert. All elements greater than the \texttt{root} go to the
+right of the \texttt{root}, and all elements smaller than the
+\texttt{root} go to the left of the \texttt{root}.
+
+If we assume that our Binary Search tree is balanced, insertion would
+require \texttt{O(h)} time in the worst case. Similarly, removal would
+also require \texttt{O(h)} time. Here \texttt{h} is the height of the
+binary search tree.
+
+A Binary Tree is called a \texttt{Balanced\ Binary\ Tree} when the
+difference between the heights of it's left subtree and right subtree do
+not differ by more than one. Additionally, to be balanced, all the
+subtrees of the binary tree must also be balanced.
+
+For a balanced tree, we can safely approximate the height of the tree
+\texttt{h} to \texttt{log(n)}. Thus, both insertion and removal require
+\texttt{O(log(n))} time in a binary search tree.
+
+However, in the worst case, our binary search tree might just be a
+sequential list of nodes (stretching to the right or to the left).
+Consider the following tree:
+
+In such a scenario the binary search tree effectively turns into a
+linked list. In this case, the time complexity would be \texttt{O(n)}
+
+To avoid this situation, we would need a self-balancing tree which
+incure additional complexity.
+
+We could use any of the above data structures to implement our priority
+queue---and they would work, in the sense that they would exhibit the
+outward behavior we expect in a priority queue.
+
+However, none of them acheived our goal of having \(O(1)\) time
+complexity for both \texttt{insert} and \texttt{remove}. To do that, we
+will need to explore something new: A \emph{heap}.
+
+    \section{Heaps}\label{heaps}
+
+A heap is a data structure with the following two main properties:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Complete Binary Tree
+\item
+  Heap Order Property
+\end{enumerate}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Complete Binary Tree} - Like the name suggests we use a binary
+  tree to create heaps. A complete binary tree is a special type of
+  binary tree in which all levels must be filled except for the last
+  level. Moreover, in the last level, the elements must be filled from
+  left to right.
+\end{enumerate}
+
+A. is a complete binary tree. Notice how every level except the last
+level is filled. Also notice how the last level is filled from left to
+right.
+
+B. is not a complete binary tree. Although evey level is filled except
+for the last level. Notice how the last level is not filled from left to
+right. \texttt{25} does not have any right node and yet there is one
+more node (\texttt{9}) in the same level towards the right of it. It is
+mandatory for a complete binary tree to be filled from left to right.
+
+ C. is also not a binary tree. Notice how the second level is not
+completely filled and yet we have elements in the third level. The right
+node of \texttt{10} is empty and yet we have nodes in the next level.
+
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Heap Order Property} - Heaps come in two flavors
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Min Heap
+  \item
+    Max Heap
+  \end{itemize}
+\item
+  Min Heap - In the case of min heaps, for each node, the parent node
+  must be smaller than both the child nodes. It's okay even if one or
+  both of the child nodes do not exists. However if they do exist, the
+  value of the parent node must be smaller. Also note that it does not
+  matter if the left node is greater than the right node or vice versa.
+  The only important condition is that the root node must be smaller
+  than both it's child nodes
+\item
+  Max Heap - For max heaps, this condition is exactly reversed. For each
+  node, the value of the parent node must be larger than both the child
+  nodes.
+\end{itemize}
+
+Thus, for a data structure to be called a Heap, it must satisfy both of
+the above properties. 1. It must be a complete binary tree 2. It must
+satisfy the heap order property. If it's a min heap, it must satisfy the
+heap order property for min heaps. If it's a max heap, it should satisfy
+the heap order property for max heaps.
+
+    \subsection{Complete Binary Tree}\label{complete-binary-tree}
+
+Let's go back to our complete binary tree \texttt{A}.
+
+If we have to insert one more node, where should the next node go?
+Because \texttt{A.} is a complete binary tree, the next node can only go
+as the \texttt{left} node of \texttt{15}.
+
+Similarly, let's look back \texttt{A.} again. If we have to delete a
+node from \texttt{A.}, which node should we delete? Again, to ensure
+that our tree remains a complete binary tree even after deleting a node,
+we can only remove \texttt{9}.
+
+Thus, we know which node to remove and where to insert a new node.
+Notice that both of these operations do not depend upon values of other
+nodes. Rather, both \texttt{insert} and \texttt{remove} operations on a
+complete binary tree depend upon the position of the last inserted node.
+
+    \textbf{\emph{This cell may require some visualization due to the
+mathematics involved}}
+
+Now that we know about a complete binary, let's think about it in terms
+of Priority Queues. We talked about binary search trees where the
+complexity for \texttt{insert} and \texttt{remove} operation would be
+\texttt{O(log(n))} if the BST is balanced.
+
+In case of a complete binary tree we do not have to worry about whether
+the tree is balanced or not.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Max\ number\ of\ nodes\ in\ 1st\ level\ =\ 1}
+\item
+  \texttt{Max\ number\ of\ nodes\ in\ 2nd\ level\ =\ 2}
+\item
+  \texttt{Max\ number\ of\ nodes\ in\ 3rd\ level\ =\ 4}
+\item
+  \texttt{Max\ number\ of\ nodes\ in\ 4th\ level\ =\ 8}
+\end{itemize}
+
+We see that there is a clear patter here.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Max\ number\ of\ nodes\ in\ hth\ level} = \(2^{(h-1)}\)
+\end{itemize}
+
+Also, we can calculate the
+\texttt{max\ number\ of\ nodes\ from\ 1st\ level\ to\ hth\ level\ =}
+\(2^h - 1\)
+
+Similarly, we can calculate the
+\texttt{min\ number\ of\ nodes\ from\ 1st\ level\ to\ hth\ level\ =}\(2^{(h-1)}\)
+
+\emph{Note: the minimum number of nodes from 1st level to hth level =
+max number of nodes from 1st level to (h-1)th level + 1}
+
+Thus, in a complete binary tree of height \texttt{h}, we can be assured
+that the number of elements \texttt{n} would be between these two
+numbers i.e.
+
+\[ 2^{(h-1)}  <= n <= 2^h - 1\]
+
+\begin{itemize}
+\tightlist
+\item
+  If we write the first inequality in base-2 logarithmic format we would
+  have
+\end{itemize}
+
+\[ \log_{2}\ (2^{(h-1)}) <= \log_{2} n \]
+
+\[or\]
+
+\[ h <= \log_{2} n + 1\]
+
+\begin{itemize}
+\tightlist
+\item
+  Similarly, if we write the second equality in base-2 logarithmic
+  format
+\end{itemize}
+
+\[ \log_{2} (n + 1) <= \log_{2}\ 2^{h}\]
+
+\[ or \]
+
+\[ \log_{2} (n + 1) <= h \]
+
+Thus the value of our height \texttt{h} is always
+
+\[ \log_{2} (n + 1) <= h <= \log_{2} n + 1\]
+
+We can see that the height of our complete binary tree will always be in
+the order of \texttt{O(h)} or \texttt{O(log(n))}
+
+So, if instead of using a binary search tree, we use a complete binary
+tree, both \texttt{insert} and \texttt{remove} operation will have the
+time complexity \(\ \log_{2} n\)
+
+    \subsubsection{Heaps for Priority
+Queues}\label{heaps-for-priority-queues}
+
+Let's take a step back and reflect on what we have done.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We have examined popular data structures and observed their time
+  complexities.
+\item
+  We have looked at a new data structure called Heap
+\item
+  We know that Heaps have two properties - i. CBT ii. Heap Order
+  Property
+\item
+  We have looked at what CBT is and what Heap Order Property is
+\end{enumerate}
+
+By now, it must have been clear to you that we are going to use Heaps to
+create our Priority Queues. But are you convinced that heaps are a good
+structure to create Priority Queues?
+
+Ans.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Other than Binary Search trees, all other popular data structures
+  seemed to have a time complexity of \texttt{O(n)} for both
+  \texttt{insertion\ and\ removal}.
+\item
+  Binary Search Trees seemed like an effective data structure with
+  average case time complexity of \texttt{O(log(n)} (or \texttt{O(h)})
+  for both the operations. However, in the worst case, a Binary Search
+  Tree may not be balanced and instead behave like a linked list. In
+  such a case, the time complexity in terms of height would still be
+  \texttt{O(h)} but because the height of the binary search tree will be
+  equal to the number of elements in the tree, the actual time
+  complexity in terms of \texttt{number\ of\ elements\ n} would be
+  \texttt{O(n)}.
+\item
+  The CBT property of Heaps ensures that the tree is always balanced.
+  Therefore, the \texttt{height\ h} of the tree will always be equal to
+  \texttt{log(n)}.
+\item
+  The Heap Order Property ensures that there is some definite structure
+  to our Complete Binary Tree with respect to the value of the elements.
+  In case of a min-heap, the minimum element will always lie at the root
+  node. Similarly, in case of a maxp-heap, the maximum element will
+  always lie at the root node. In both the cases, every time we
+  \texttt{insert\ or\ remove} an element, the time complexity remains
+  \texttt{O(log(n))}.
+\end{enumerate}
+
+Therefore, because of the time complexity being \texttt{O(log(n))}, we
+prefer heaps over other popular data structures to create our Priority
+Queues.
+
+    \subsection{Complete Binary Trees using
+Arrays}\label{complete-binary-trees-using-arrays}
+
+Although we call them complete binary trees, and we will always
+visualize them as binary trees, we never use binary trees to create
+them. Instead, we actually use arrays to create our complete binary
+trees.
+
+Let's us see how.
+
+An array is a contiguous blocks of memory with individual "blocks" are
+laid out one after the other in memory. We are used to visualizing
+arrays as sequential blocks of memory.
+
+However, if we visualize them in the following way, can we find some
+similarities between arrays and complete binary trees?
+
+    Let's think about it.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{In a complete binary tree, it is mandatory for all levels
+  before the last level to be completely filled.}
+\end{itemize}
+
+If we visualize our array in this manner, do we satisfy this property of
+a CBT? All we have to ensure is that we put elements in array indices
+sequenially i.e. the smaller index first and the larger index next. If
+we do that, we can be assured that all levels before the last level will
+be completely filled.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{In a CBT, if the last level is not completely filled, the
+  nodes must be filled from left to right.}
+\end{itemize}
+
+Again, if we put elements in the array indices sequentially, from
+smaller index to larger index, we can be assured that if the last level
+is not filled, it will certainly be filled from left to right.
+
+Thus we can use an array to create our Completer Binary Tree. Although
+it's an array, we will always visualize it as complete binary tree when
+talking about heaps.
+
+    Now let's talk about \texttt{insert} and \texttt{remove} operation in a
+heap. We will create our heap class which with these two operations. We
+also add a few utility methods for our convenience. Finally, because we
+know we are going to use arrays to create our heaps, we will also
+initialize an array.
+
+Note that we are creating min heaps for now. The max heap will follow
+the exact some process. The only difference arises in the Heap Order
+Property.
+
+As always we will use Python lists like C-style arrays to make the
+implementation as language agnostic as possible.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{class} \PY{n+nc}{Heap}\PY{p}{:}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{initial\PYZus{}size}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt} \PY{o}{=} \PY{p}{[}\PY{k+kc}{None} \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{initial\PYZus{}size}\PY{p}{)}\PY{p}{]}        \PY{c+c1}{\PYZsh{} initialize arrays}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{0}                                   \PY{c+c1}{\PYZsh{} denotes next index where new element should go}
+                
+            \PY{k}{def} \PY{n+nf}{insert}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{data}\PY{p}{)}\PY{p}{:}
+                \PY{k}{pass}
+            
+            \PY{k}{def} \PY{n+nf}{remove}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{k}{pass}
+\end{Verbatim}
+
+    \subsubsection{Insert}\label{insert}
+
+Insertion operation in a CBT is quite simple. Because we are using
+arrays to implement a CBT, we will always insert at the
+\texttt{next\_index}. Also, after inserting, we will increment the value
+of \texttt{next\_index}.
+
+However, this isn't enough. We also have to maintain the heap order
+property. We know that for min-heaps, the parent node is supposed to be
+smaller than both the child nodes.
+
+    Counting indices, we know that our next element should go at index 8.
+Let's say we want to insert \texttt{15} as our next element in the heap.
+In that case, we start off by inserting \texttt{15} at index 8.
+
+Remember, although we are using arrays to implement a CBT, we will
+always visualize it as a binary tree. We will only consider them as
+arrays while implementing them.
+
+So, we went ahead and insert \texttt{15} at index 8. But this violates
+our heap order property. We are considering min-heap and the parent node
+of \texttt{15} is larger.
+
+In such a case, we \texttt{heapify}. We consider the parent node of the
+node we inserted and compare their values. In case of min-heaps, if the
+parent node is larger than the child node (the one we just inserted), we
+swap the nodes.
+
+Now the complete binary tree looks something like
+
+    Is the problem solved?
+
+Swapping the nodes for \texttt{15} and \texttt{50} certainly solved our
+problem. But it also introduced a new problem. Notice \texttt{15} and
+\texttt{20}. We are again in the same spot. The parent node is larger
+than the child node. And in a min-heap we cannot allow that. So, what do
+we do? We heapify. We swap these two nodes just as we swapped our
+previous two nodes.
+
+After swapping, our CBT looks like
+
+Does everything seem fine now?
+
+We only have to consider the nodes that we swapped. And looks like we
+are fine.
+
+Now let's take a step back and see what we did.
+
+\begin{itemize}
+\item
+  We first inserted our element at the possible index.
+\item
+  Then we compared this element with the parent element and swapped them
+  after finding that our child node was smaller than our parent node.
+  And we did this process again. While writing code, we will continue
+  this process until we find a parent which is smaller than the child
+  node. Because we are travering the tree upwards while heapifying, this
+  particular process is more accurately called \texttt{up-heapify}.
+\end{itemize}
+
+Thus our \texttt{insert} method is actually done in two steps: * insert
+* up-heapify
+
+    \subsubsection{Time Complexity}\label{time-complexity}
+
+Before talking about the implementation of \texttt{insert}, let's talk
+about the time complexity of the \texttt{insert} method.
+
+\begin{itemize}
+\tightlist
+\item
+  Putting an element at a particular index in an array takes
+  \texttt{O(1)} time.
+\item
+  However, in case of heapify, in the worst case we may have to travel
+  from the node that we inserted right to the root node (placed at 0th
+  index in the array). This would take \texttt{O(h)} time. In other
+  words, this would be an \texttt{O(log(n))} operation.
+\end{itemize}
+
+Thus the time complexity of \texttt{insert} would be \texttt{O(log(n))}.
+
+    \subsubsection{Insert - implementation}\label{insert---implementation}
+
+Although we are using arrays for our CBT, we are visualizing it as a
+binary tree for understanding the idea. But when it comes to the
+implementation, we will have to think about it as an array. It is an
+array, after all.
+
+In the above image, we can safely assume that
+
+\begin{itemize}
+\item
+  index 0 is the root node of the binary tree
+\item
+  index 0 is the parent node for indices 1 and 2 i.e. 1 is the left node
+  of index 0, and 2 is the right node
+\item
+  Similarly, 3 and 4 are the child nodes of index 1.
+\item
+  And 5 and 6 are the child nodes of index 2
+\end{itemize}
+
+Can we deduce any pattern from this?
+
+\begin{itemize}
+\item
+  If you notice carefully, the child nodes of 0 are
+  -\/-\/-\textgreater{} 1 and 2
+\item
+  The child nodes of 1 are -\/-\/-\textgreater{} 3 and 4
+\item
+  The child nodes of 2 are -\/-\/-\textgreater{} 5 and 6
+\end{itemize}
+
+The child nodes of \texttt{p} are -\/-\/-\textgreater{}
+\texttt{2\ *\ (p\ +\ 1)} and \texttt{2\ *\ (p\ +\ 2)}
+
+i.e.
+\texttt{the\ child\ nodes\ of\ a\ parent\ index\ p\ are\ placed\ at\ indices\ 2\ *\ (p\ +\ 1)\ and\ 2\ *\ (p\ +\ 2)}
+
+    Similarly, can you deduce parent indices from a child index \texttt{c}?
+
+Ans.
+\texttt{for\ a\ child\ node\ at\ index\ c,\ the\ parent\ node\ will\ be\ located\ at\ (p\ -\ 1)//2}
+
+\emph{Note the integer division}
+
+    Using these ideas, implement the \texttt{insert} method.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{class} \PY{n+nc}{Heap}\PY{p}{:}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{initial\PYZus{}size}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt} \PY{o}{=} \PY{p}{[}\PY{k+kc}{None} \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{initial\PYZus{}size}\PY{p}{)}\PY{p}{]}        \PY{c+c1}{\PYZsh{} initialize arrays}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{0}                                   \PY{c+c1}{\PYZsh{} denotes next index where new element should go}
+            
+            \PY{k}{def} \PY{n+nf}{insert}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{data}\PY{p}{)}\PY{p}{:}
+                \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{        Insert `data` into the heap}
+        \PY{l+s+sd}{        \PYZdq{}\PYZdq{}\PYZdq{}}
+                \PY{k}{pass}
+\end{Verbatim}
+
+    Hide Solution
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{class} \PY{n+nc}{Heap}\PY{p}{:}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{initial\PYZus{}size}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt} \PY{o}{=} \PY{p}{[}\PY{k+kc}{None} \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{initial\PYZus{}size}\PY{p}{)}\PY{p}{]}  \PY{c+c1}{\PYZsh{} initialize arrays}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{0}  \PY{c+c1}{\PYZsh{} denotes next index where new element should go}
+        
+            \PY{k}{def} \PY{n+nf}{\PYZus{}up\PYZus{}heapify}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{n}{child\PYZus{}index} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}
+        
+                \PY{k}{while} \PY{n}{child\PYZus{}index} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}
+                    \PY{n}{parent\PYZus{}index} \PY{o}{=} \PY{p}{(}\PY{n}{child\PYZus{}index} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}
+                    \PY{n}{parent\PYZus{}element} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{parent\PYZus{}index}\PY{p}{]}
+                    \PY{n}{child\PYZus{}element} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{child\PYZus{}index}\PY{p}{]}
+        
+                    \PY{k}{if} \PY{n}{parent\PYZus{}element} \PY{o}{\PYZgt{}} \PY{n}{child\PYZus{}element}\PY{p}{:}
+                        \PY{c+c1}{\PYZsh{} swap elements }
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{parent\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{child\PYZus{}element}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{child\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{parent\PYZus{}element}
+                        \PY{c+c1}{\PYZsh{} update child index (decrease)}
+                        \PY{n}{child\PYZus{}index} \PY{o}{=} \PY{n}{parent\PYZus{}index}
+                    \PY{k}{else}\PY{p}{:}
+                        \PY{k}{break}
+        
+            \PY{k}{def} \PY{n+nf}{insert}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{data}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} insert element at the next index}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{data}
+        
+                \PY{c+c1}{\PYZsh{} heapify}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}up\PYZus{}heapify}\PY{p}{(}\PY{p}{)}
+        
+                \PY{c+c1}{\PYZsh{} increase index by 1}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+        
+                \PY{c+c1}{\PYZsh{} double the array and copy elements if next\PYZus{}index goes out of array bounds}
+                \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{temp} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}
+                    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt} \PY{o}{=} \PY{p}{[}\PY{k+kc}{None} \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+        
+                    \PY{k}{for} \PY{n}{index} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{)}\PY{p}{:}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{index}\PY{p}{]} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{n}{index}\PY{p}{]}
+\end{Verbatim}
+
+    \subsubsection{Remove}\label{remove}
+
+For min-heaps, we remove the smallest element from our heaps. For
+max-heaps, we remove the largest element from the heap.
+
+By now, you must have realized that in case of min-heaps, the minimum
+element is stored at the root node of the complete binary tree.
+\emph{Again, we are emphasizing the fact that we will always visualize a
+complete binary tree as a binary tree and not an array.}
+
+Consider this CBT. Our remove operation should remove \texttt{10} from
+the tree. But if we remove \texttt{10}, we need to put the next smaller
+element at the root node. But that will again leave one node empty. So,
+we will again have to go to our next smaller element and place it at the
+node that is empty. This sounds tedious.
+
+Rather, we use a very simple yet efficient trick to remove the element.
+We swap the first node of the tree (which is the minimum element for a
+min-heap) with the last node of the tree.
+
+If we think about the implementation of our complete binary tree, we
+know that \texttt{10} will now be present at the last index of the
+array. So, removing \texttt{10} is a \texttt{O(1)} operation.
+
+However, you might have noticed that our complete binary tree does not
+follow the heap order property which means that it's no longer a heap.
+So, just like last time, we \texttt{heapify}. This time however, we
+start at the top and heapify in downward direction. Therefore, this is
+also called as \texttt{down-heapify}.
+
+We look at \texttt{50} which is present at the root node, and compare it
+with both it's children. We take the minimum of the three nodes i.e.
+\texttt{50,\ 15,\ and\ 40}, and place this minimum at the root node. At
+the same time, we place \texttt{50} at the node which we placed at the
+root node.
+
+Following this operation, our CBT looks like
+
+Even now the CBT does not follow the heap order property. So, we again
+compare \texttt{50} with it's child nodes and swap \texttt{50} with the
+minimum of the three nodes.
+
+At this point we stop because our CBT follows the heap order property.
+
+    Can you code the \texttt{remove} method?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{class} \PY{n+nc}{Heap}\PY{p}{:}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{initial\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt} \PY{o}{=} \PY{p}{[}\PY{k+kc}{None} \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{initial\PYZus{}size}\PY{p}{)}\PY{p}{]}  \PY{c+c1}{\PYZsh{} initialize arrays}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{0}  \PY{c+c1}{\PYZsh{} denotes next index where new element should go    }
+            
+            \PY{k}{def} \PY{n+nf}{size}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}
+            
+            \PY{k}{def} \PY{n+nf}{remove}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{        Remove and return the element at the top of the heap}
+        \PY{l+s+sd}{        \PYZdq{}\PYZdq{}\PYZdq{}}
+                \PY{k}{pass}
+\end{Verbatim}
+
+    Hide Solution
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{class} \PY{n+nc}{Heap}\PY{p}{:}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{initial\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt} \PY{o}{=} \PY{p}{[}\PY{k+kc}{None} \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{initial\PYZus{}size}\PY{p}{)}\PY{p}{]}  \PY{c+c1}{\PYZsh{} initialize arrays}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{0}  \PY{c+c1}{\PYZsh{} denotes next index where new element should go}
+        
+            \PY{k}{def} \PY{n+nf}{\PYZus{}down\PYZus{}heapify}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{n}{parent\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{0}
+        
+                \PY{k}{while} \PY{n}{parent\PYZus{}index} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{:}
+                    \PY{n}{left\PYZus{}child\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{parent\PYZus{}index} \PY{o}{+} \PY{l+m+mi}{1}
+                    \PY{n}{right\PYZus{}child\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{parent\PYZus{}index} \PY{o}{+} \PY{l+m+mi}{2}
+        
+                    \PY{n}{parent} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{parent\PYZus{}index}\PY{p}{]}
+                    \PY{n}{left\PYZus{}child} \PY{o}{=} \PY{k+kc}{None}
+                    \PY{n}{right\PYZus{}child} \PY{o}{=} \PY{k+kc}{None}
+        
+                    \PY{n}{min\PYZus{}element} \PY{o}{=} \PY{n}{parent}
+        
+                    \PY{c+c1}{\PYZsh{} check if left child exists}
+                    \PY{k}{if} \PY{n}{left\PYZus{}child\PYZus{}index} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{:}
+                        \PY{n}{left\PYZus{}child} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{left\PYZus{}child\PYZus{}index}\PY{p}{]}
+        
+                    \PY{c+c1}{\PYZsh{} check if right child exists}
+                    \PY{k}{if} \PY{n}{right\PYZus{}child\PYZus{}index} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{:}
+                        \PY{n}{right\PYZus{}child} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{right\PYZus{}child\PYZus{}index}\PY{p}{]}
+        
+                    \PY{c+c1}{\PYZsh{} compare with left child}
+                    \PY{k}{if} \PY{n}{left\PYZus{}child} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
+                        \PY{n}{min\PYZus{}element} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{parent}\PY{p}{,} \PY{n}{left\PYZus{}child}\PY{p}{)}
+        
+                    \PY{c+c1}{\PYZsh{} compare with right child}
+                    \PY{k}{if} \PY{n}{right\PYZus{}child} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
+                        \PY{n}{min\PYZus{}element} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{right\PYZus{}child}\PY{p}{,} \PY{n}{min\PYZus{}element}\PY{p}{)}
+        
+                    \PY{c+c1}{\PYZsh{} check if parent is rightly placed}
+                    \PY{k}{if} \PY{n}{min\PYZus{}element} \PY{o}{==} \PY{n}{parent}\PY{p}{:}
+                        \PY{k}{return}
+        
+                    \PY{k}{if} \PY{n}{min\PYZus{}element} \PY{o}{==} \PY{n}{left\PYZus{}child}\PY{p}{:}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{left\PYZus{}child\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{parent}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{parent\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{min\PYZus{}element}
+                        \PY{n}{parent} \PY{o}{=} \PY{n}{left\PYZus{}child\PYZus{}index}
+        
+                    \PY{k}{elif} \PY{n}{min\PYZus{}element} \PY{o}{==} \PY{n}{right\PYZus{}child}\PY{p}{:}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{right\PYZus{}child\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{parent}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{parent\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{min\PYZus{}element}
+                        \PY{n}{parent} \PY{o}{=} \PY{n}{right\PYZus{}child\PYZus{}index}
+        
+            \PY{k}{def} \PY{n+nf}{size}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}
+        
+            \PY{k}{def} \PY{n+nf}{remove}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{        Remove and return the element at the top of the heap}
+        \PY{l+s+sd}{        \PYZdq{}\PYZdq{}\PYZdq{}}
+                \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                    \PY{k}{return} \PY{k+kc}{None}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{l+m+mi}{1}
+        
+                \PY{n}{to\PYZus{}remove} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                \PY{n}{last\PYZus{}element} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{]}
+        
+                \PY{c+c1}{\PYZsh{} place last element of the cbt at the root}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{last\PYZus{}element}
+        
+                \PY{c+c1}{\PYZsh{} we do not remove the elementm, rather we allow next `insert` operation to overwrite it}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{to\PYZus{}remove}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}down\PYZus{}heapify}\PY{p}{(}\PY{p}{)}
+        
+                \PY{k}{return} \PY{n}{to\PYZus{}remove}
+\end{Verbatim}
+
+    \subsubsection{Time Complexity}\label{time-complexity}
+
+Can you determine the time complexity for \texttt{remove} using the same
+process that we followed for \texttt{insert}?
+
+\emph{Ans: the time complexity for \texttt{remove} is also O(log(n))}
+
+    \subsubsection{Final Heap}\label{final-heap}
+
+Using the \texttt{insert} and \texttt{remove} functions, let's run the
+heap.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{class} \PY{n+nc}{Heap}\PY{p}{:}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{initial\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt} \PY{o}{=} \PY{p}{[}\PY{k+kc}{None} \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{initial\PYZus{}size}\PY{p}{)}\PY{p}{]}  \PY{c+c1}{\PYZsh{} initialize arrays}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{0}  \PY{c+c1}{\PYZsh{} denotes next index where new element should go}
+        
+            \PY{k}{def} \PY{n+nf}{insert}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{data}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} insert element at the next index}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{data}
+        
+                \PY{c+c1}{\PYZsh{} heapify}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}up\PYZus{}heapify}\PY{p}{(}\PY{p}{)}
+        
+                \PY{c+c1}{\PYZsh{} increase index by 1}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+        
+                \PY{c+c1}{\PYZsh{} double the array and copy elements if next\PYZus{}index goes out of array bounds}
+                \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{temp} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}
+                    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt} \PY{o}{=} \PY{p}{[}\PY{k+kc}{None} \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+        
+                    \PY{k}{for} \PY{n}{index} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{)}\PY{p}{:}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{index}\PY{p}{]} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{n}{index}\PY{p}{]}
+        
+            \PY{k}{def} \PY{n+nf}{remove}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                    \PY{k}{return} \PY{k+kc}{None}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{l+m+mi}{1}
+        
+                \PY{n}{to\PYZus{}remove} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                \PY{n}{last\PYZus{}element} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{]}
+        
+                \PY{c+c1}{\PYZsh{} place last element of the cbt at the root}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{last\PYZus{}element}
+        
+                \PY{c+c1}{\PYZsh{} we do not remove the elementm, rather we allow next `insert` operation to overwrite it}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{to\PYZus{}remove}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}down\PYZus{}heapify}\PY{p}{(}\PY{p}{)}
+                \PY{k}{return} \PY{n}{to\PYZus{}remove}
+        
+            \PY{k}{def} \PY{n+nf}{size}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index} 
+        
+            \PY{k}{def} \PY{n+nf}{is\PYZus{}empty}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}
+        
+            \PY{k}{def} \PY{n+nf}{\PYZus{}up\PYZus{}heapify}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} print(\PYZdq{}inside heapify\PYZdq{})}
+                \PY{n}{child\PYZus{}index} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}
+        
+                \PY{k}{while} \PY{n}{child\PYZus{}index} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}
+                    \PY{n}{parent\PYZus{}index} \PY{o}{=} \PY{p}{(}\PY{n}{child\PYZus{}index} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}
+                    \PY{n}{parent\PYZus{}element} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{parent\PYZus{}index}\PY{p}{]}
+                    \PY{n}{child\PYZus{}element} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{child\PYZus{}index}\PY{p}{]}
+        
+                    \PY{k}{if} \PY{n}{parent\PYZus{}element} \PY{o}{\PYZgt{}} \PY{n}{child\PYZus{}element}\PY{p}{:}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{parent\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{child\PYZus{}element}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{child\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{parent\PYZus{}element}
+        
+                        \PY{n}{child\PYZus{}index} \PY{o}{=} \PY{n}{parent\PYZus{}index}
+                    \PY{k}{else}\PY{p}{:}
+                        \PY{k}{break}
+        
+            \PY{k}{def} \PY{n+nf}{\PYZus{}down\PYZus{}heapify}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{n}{parent\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{0}
+        
+                \PY{k}{while} \PY{n}{parent\PYZus{}index} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{:}
+                    \PY{n}{left\PYZus{}child\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{parent\PYZus{}index} \PY{o}{+} \PY{l+m+mi}{1}
+                    \PY{n}{right\PYZus{}child\PYZus{}index} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{parent\PYZus{}index} \PY{o}{+} \PY{l+m+mi}{2}
+        
+                    \PY{n}{parent} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{parent\PYZus{}index}\PY{p}{]}
+                    \PY{n}{left\PYZus{}child} \PY{o}{=} \PY{k+kc}{None}
+                    \PY{n}{right\PYZus{}child} \PY{o}{=} \PY{k+kc}{None}
+        
+                    \PY{n}{min\PYZus{}element} \PY{o}{=} \PY{n}{parent}
+        
+                    \PY{c+c1}{\PYZsh{} check if left child exists}
+                    \PY{k}{if} \PY{n}{left\PYZus{}child\PYZus{}index} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{:}
+                        \PY{n}{left\PYZus{}child} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{left\PYZus{}child\PYZus{}index}\PY{p}{]}
+        
+                    \PY{c+c1}{\PYZsh{} check if right child exists}
+                    \PY{k}{if} \PY{n}{right\PYZus{}child\PYZus{}index} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{:}
+                        \PY{n}{right\PYZus{}child} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{right\PYZus{}child\PYZus{}index}\PY{p}{]}
+        
+                    \PY{c+c1}{\PYZsh{} compare with left child}
+                    \PY{k}{if} \PY{n}{left\PYZus{}child} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
+                        \PY{n}{min\PYZus{}element} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{parent}\PY{p}{,} \PY{n}{left\PYZus{}child}\PY{p}{)}
+        
+                    \PY{c+c1}{\PYZsh{} compare with right child}
+                    \PY{k}{if} \PY{n}{right\PYZus{}child} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
+                        \PY{n}{min\PYZus{}element} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{right\PYZus{}child}\PY{p}{,} \PY{n}{min\PYZus{}element}\PY{p}{)}
+        
+                    \PY{c+c1}{\PYZsh{} check if parent is rightly placed}
+                    \PY{k}{if} \PY{n}{min\PYZus{}element} \PY{o}{==} \PY{n}{parent}\PY{p}{:}
+                        \PY{k}{return}
+        
+                    \PY{k}{if} \PY{n}{min\PYZus{}element} \PY{o}{==} \PY{n}{left\PYZus{}child}\PY{p}{:}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{left\PYZus{}child\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{parent}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{parent\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{min\PYZus{}element}
+                        \PY{n}{parent} \PY{o}{=} \PY{n}{left\PYZus{}child\PYZus{}index}
+        
+                    \PY{k}{elif} \PY{n}{min\PYZus{}element} \PY{o}{==} \PY{n}{right\PYZus{}child}\PY{p}{:}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{right\PYZus{}child\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{parent}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{n}{parent\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{min\PYZus{}element}
+                        \PY{n}{parent} \PY{o}{=} \PY{n}{right\PYZus{}child\PYZus{}index}
+        
+            \PY{k}{def} \PY{n+nf}{get\PYZus{}minimum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Returns the minimum element present in the heap}
+                \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                    \PY{k}{return} \PY{k+kc}{None}
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cbt}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{heap\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{5}
+         \PY{n}{heap} \PY{o}{=} \PY{n}{Heap}\PY{p}{(}\PY{n}{heap\PYZus{}size}\PY{p}{)}
+         
+         \PY{n}{elements} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}
+         \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements}\PY{p}{:}
+             \PY{n}{heap}\PY{o}{.}\PY{n}{insert}\PY{p}{(}\PY{n}{element}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Inserted elements: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{elements}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{heap array: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{cbt}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size of heap: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Call remove: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{remove}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{heap array: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{cbt}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{heap next\PYZus{}index: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{next\PYZus{}index}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size of heap: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Call get\PYZus{}minimum: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{get\PYZus{}minimum}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Call remove: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{remove}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size of heap: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Call remove: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{remove}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Call is\PYZus{}empty: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{heap}\PY{o}{.}\PY{n}{is\PYZus{}empty}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Inserted elements: [1, 2, 3, 4, 1, 2]
+heap array: [1, 1, 2, 4, 2, 3, None, None, None, None]
+size of heap: 6
+Call remove: 1
+heap array: [1, 3, 2, 4, 2, 1, None, None, None, None]
+heap next\_index: 5
+size of heap: 5
+Call remove: 1
+heap array: [2, 3, 2, 4, 1, 1, None, None, None, None]
+heap next\_index: 4
+size of heap: 4
+Call remove: 2
+heap array: [2, 3, 4, 2, 1, 1, None, None, None, None]
+heap next\_index: 3
+size of heap: 3
+Call remove: 2
+heap array: [3, 4, 2, 2, 1, 1, None, None, None, None]
+heap next\_index: 2
+size of heap: 2
+Call get\_minimum: 3
+Call remove: 3
+Call remove: 4
+size of heap: 0
+Call remove: None
+Call is\_empty: True
+
+    \end{Verbatim}
+
+    That's it for heaps! Now it's time for the next topic, self-balancing
+trees.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
