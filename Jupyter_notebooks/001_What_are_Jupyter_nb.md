@@ -51,7 +51,7 @@ The Jupyter notebook combines two components:
 
 - In-browser editing for rich text using the [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#images) markup language, which can provide commentary for the code, is not limited to plain text.
 
-- The ability to easily include mathematical notation within markdown cells using LaTeX, and rendered natively by [MathJax](!https://www.mathjax.org/)
+- The ability to easily include mathematical notation within markdown cells using LaTeX, and rendered natively by [MathJax](https://www.mathjax.org/)
 
 ### Notebook documents
 

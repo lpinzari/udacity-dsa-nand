@@ -3,12 +3,12 @@ Create slideshows from notebooks is one of my favorite features. You can see an 
 
 The slides are created in notebooks like normal, but you'll need to designate which cells are slides and the type of slide the cell will be. In the menu bar, click View > Cell Toolbar > Slideshow to bring up the slide cell menu on each cell.
 
-![slide shows](images/slides-cell-toolbar-menu.png)
+![slide shows](./images/slides-cell-toolbar-menu.png)
 *Turning on Slideshow Toolbars for cells*
 
 This will show a menu dropdown on each cell that lets you choose how the cell shows up in the slideshow.
 
-![slide show type](images/slides-choose-slide-type.png)
+![slide show type](./images/slides-choose-slide-type.png)
 *Choose slide type*
 
 **Slides** are full slides that you move through left to right. **Sub-slides** show up in the slideshow by pressing up or down. **Fragments** are hidden at first, then appear with a button press. You can skip cells in the slideshow with **Skip** and **Notes** leaves the cell as speaker notes.

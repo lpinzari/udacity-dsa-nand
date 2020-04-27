@@ -2,11 +2,11 @@
 
 Once the Notebook server is started we can create a new notebook by clicking on the **New** button on the up-right of the dashboard. The **New** pull down menu presents a list of choices that are available.
 
-![New notebook](/images/new-notebook.png)
+![New notebook](./images/new-notebook.png)
 
 To create a notebook where the coding is in the Python language select the `Python 3` option. After the selection, the browser should open a new tab and we would see something like the following.
 
-![New notebook interface](/images/new-notebook-interface.png)
+![New notebook interface](./images/new-notebook-interface.png)
 
 We have created a new Jupyter Notebook and are in its display. The logo is there. At the top you see the title default name `Untitled`. Click on this to rename the notebook (so that renames our ipython notebook file). There is an `(autosaved)` marker that tells you Jupyter has automatically started your notebook to disk (and contitnue to do so regularly as you work on it). If you need any Help to walkthrough the interface I would recommend to click on the `help` section and select the `User interface tour` option.
 
@@ -16,11 +16,11 @@ The Notebook has two modes **Edit** mode and **Command** mode. I'll cover the Co
 
 To run the code within an active cell you have a number of options available in the `Cell` menu. The `Cell` menu has the following choices:
 
-![Cell choices](/images/choices.png)
+![Cell choices](./images/choices.png)
 
 For example, if you want to run the current cell and insert a new cell below the output then the `Run Cells and Inset below` option is selected. Another way to run this command is clicking the black arrow icon in the toolbar or the **keyboard shortcut** `option`+`return`. All the available keyboard shortcuts are listed in the `help` section menu by clicking on the option `keyboard shortcuts`. The example in the figure below shows the execution of the code `print ("Hello world")`.
 
-![hello world](/images/first-example.png)
+![hello world](./images/first-example.png)
 
 When you run a code cell, the output is displayed below the cell. The cell also gets numbered, you see `In [1]:` on the left. This lets you know the code was run and the order if you run multiple cells. Running the cell in Markdown mode renders the Markdown as text.
 

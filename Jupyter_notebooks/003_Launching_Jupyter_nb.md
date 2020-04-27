@@ -23,7 +23,7 @@ If you start another server, it'll try to use port `8888`, but since it is occup
 
 If you tried starting your own server, it should look something like this:
 
-![notebook dashboard](/images/notebook-server.png)
+![notebook dashboard](./images/notebook-server.png)
 **Notebook dashboard**
 
 When the notebook opens in your browser, you will see the Notebook Dashboard, which will show a list of the notebooks, files, and subdirectories in the directory where the notebook server was started. Most of the time, you will wish to start a notebook server in the highest level directory containing notebooks.
@@ -46,19 +46,19 @@ $ conda install nb_conda
 
 Then if you run the notebook server from a conda environment, you'll also have access to the "Conda" tab shown below. Here you can manage your environments from within Jupyter. You can create new environments, install packages, update packages, export environments and more.
 
-![conda tab](/images/conda-tab.png)
+![conda tab](./images/conda-tab.png)
 **conda tab**
 
 Additionally, with `nb_conda` installed you will be able to access any of your conda environments when choosing a kernel. For example, the image below shows an example of creating a new notebook on a machine with several different conda environments:
 
-![conda env](/images/conda-environments.png)
+![conda env](./images/conda-environments.png)
 **conda environments in jupyter**
 
 ### Shutting down Jupyter
 You can shutdown individual notebooks by marking the checkbox next to the notebook on the server home and clicking "Shutdown." Make sure you've saved your work before you do this though! Any changes since the last time you saved will be lost. You'll also need to rerun the code the next time you run the notebook.
 
-![notebook shutdown](/images/notebook-shutdown.png)
+![notebook shutdown](./images/notebook-shutdown.png)
 
 You can shutdown the entire server by pressing `control` + `C` twice in the terminal. Again, this will immediately shutdown all the running notebooks, so make sure your work is saved!
 
-![server shutdown](/images/server-shutdown.png)
+![server shutdown](./images/server-shutdown.png)

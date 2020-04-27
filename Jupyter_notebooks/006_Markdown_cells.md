@@ -15,8 +15,8 @@ $$
 ```
 Here is a simple [tutorial](https://www.latex-tutorial.com/) on how to use it.
 
-![latex example](/images/math_latex.png)
+![latex example](./images/math_latex.png)
 
 After pressing `Shift` + `Enter`, or run cells in the menu.
 
-![latex rendering](/images/math_latex_2.png)
+![latex rendering](./images/math_latex_2.png)
