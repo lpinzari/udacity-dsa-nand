@@ -30,13 +30,13 @@ When the notebook opens in your browser, you will see the Notebook Dashboard, wh
 
 You might see some files and folders in the list here, it depends on where you started the server from. Since we started the server in an empty directory there is not much here.
 
-Over on the right, you can click on "**New**" to create a new notebook, text file, folder, or terminal. The list under "Notebooks" shows the kernels you have installed. The kernels are basically what programming languages you want to use in your notebooks. Here I'm running the server in a Python 3 environment, so I have a Python 3 kernel available. You might see Python 2 here. I've also installed kernels for Scala 2.10 and 2.11 which you see in the list. See this [documentation](!https://ipython.readthedocs.io/en/latest/install/kernel_install.html) for how to install kernels if you ever need to do so.
+Over on the right, you can click on "**New**" to create a new notebook, text file, folder, or terminal. The list under "Notebooks" shows the kernels you have installed. The kernels are basically what programming languages you want to use in your notebooks. Here I'm running the server in a Python 3 environment, so I have a Python 3 kernel available. You might see Python 2 here. I've also installed kernels for Scala 2.10 and 2.11 which you see in the list. See this [documentation](https://ipython.readthedocs.io/en/latest/install/kernel_install.html) for how to install kernels if you ever need to do so.
 
 Over on the right, you can also upload a file in the working directory and use in the current session by clicking on "**Upload**".
 
 The tabs at the top show *Files*, *Running*, and *Cluster*. *Files* shows all the files and folders in the current directory. Clicking on the *Running* tab will list all the currently running notebooks.
 
-*Clusters* previously was where you'd create multiple kernels for use in parallel computing. Now that's been taken over by [ipyparallel](!https://ipyparallel.readthedocs.io/en/latest/intro.html) so there isn't much to do there.
+*Clusters* previously was where you'd create multiple kernels for use in parallel computing. Now that's been taken over by [ipyparallel](https://ipyparallel.readthedocs.io/en/latest/intro.html) so there isn't much to do there.
 
 You should consider installing Notebook Conda to help manage your environments. Run the following terminal command:
 

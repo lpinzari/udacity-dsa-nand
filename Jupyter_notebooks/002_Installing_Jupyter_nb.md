@@ -6,11 +6,11 @@ We recommend using the Anaconda distribution to install Python and Jupyter. We�
 
 ## Installing Jupyter using Anaconda
 
-For new users, we highly recommend installing [Anaconda](!https://www.anaconda.com/distribution/). Anaconda conveniently installs Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.
+For new users, we highly recommend installing [Anaconda](https://www.anaconda.com/distribution/). Anaconda conveniently installs Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.
 
 Use the following installation steps:
 
-1. Download [Anaconda](!https://www.anaconda.com/distribution/). We recommend downloading Anaconda’s latest Python 3 version (currently Python 3.7).
+1. Download [Anaconda](https://www.anaconda.com/distribution/). We recommend downloading Anaconda’s latest Python 3 version (currently Python 3.7).
 
 2. Install the version of Anaconda which you downloaded, following the instructions on the download page.
 
